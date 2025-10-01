@@ -1,59 +1,13 @@
-# MongoDB Fundamentals - Week 1
+PLP Bookstore MongoDB Assignment
 
-## Setup Instructions
+This project demonstrates how to manage a plp_bookstore database using MongoDB. It includes examples of basic CRUD operations, advanced queries, aggregation pipelines, and indexing, showing how to find, update, delete, and analyze book data efficiently.
 
-Before you begin this assignment, please make sure you have the following installed:
+To get started, install MongoDB Community Edition on your computer or set up a free MongoDB Atlas cluster. Then create the database by running use plp_bookstore and create a books collection with db.createCollection("books"). Populate the collection with sample data using the provided insert_books.js script.
 
-1. **MongoDB Community Edition** - [Installation Guide](https://www.mongodb.com/docs/manual/administration/install-community/)
-2. **MongoDB Shell (mongosh)** - This is included with MongoDB Community Edition
-3. **Node.js** - [Download here](https://nodejs.org/)
+Once your database is ready, open MongoDB Shell (mongosh) or MongoDB Compass and run the queries. You can find books by genre or author, filter by publication year, update prices, delete books, sort results by price, display only specific fields, and paginate results to show a limited number of books per page.
 
-### Node.js Package Setup
+Aggregation pipelines allow you to perform advanced analysis, like calculating the average price of books by genre, finding the author with the most books, and grouping books by decade while counting them. Indexes are created on the title field and as a compound index on author and published year to make queries faster. You can use explain("executionStats") to check performance improvements.
 
-Once you have Node.js installed, run the following commands in your assignment directory:
+For example, you can run db.books.find({ genre: "Art" }) to find all Art books, db.books.aggregate([{ $group: { _id: "$genre", avgPrice: { $avg: "$price" } } }, { $sort: { avgPrice: -1 } }]) to calculate the average price by genre, or db.books.find({ title: "In the Blink of an Eye" }).explain("executionStats") to check how fast an indexed query runs. You can modify these queries to test different authors, genres, or pagination settings.
 
-```bash
-# Initialize a package.json file
-npm init -y
-
-# Install the MongoDB Node.js driver
-npm install mongodb
-```
-
-## Assignment Overview
-
-This week focuses on MongoDB fundamentals including:
-- Creating and connecting to MongoDB databases
-- CRUD operations (Create, Read, Update, Delete)
-- MongoDB queries and filters
-- Aggregation pipelines
-- Indexing for performance
-
-## Submission
-
-Complete all the exercises in this assignment and push your code to GitHub using the provided GitHub Classroom link.
-
-## Getting Started
-
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install MongoDB locally or set up a MongoDB Atlas account
-4. Run the provided `insert_books.js` script to populate your database
-5. Complete the tasks in the assignment document
-
-## Files Included
-
-- `Week1-Assignment.md`: Detailed assignment instructions
-- `insert_books.js`: Script to populate your MongoDB database with sample book data
-
-## Requirements
-
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
-- MongoDB Shell (mongosh) or MongoDB Compass
-
-## Resources
-
-- [MongoDB Documentation](https://docs.mongodb.com/)
-- [MongoDB University](https://university.mongodb.com/)
-- [MongoDB Node.js Driver](https://mongodb.github.io/node-mongodb-native/) 
+This README provides everything you need to set up the database, run the queries, and explore MongoDB features in a practical and easy-to-understand way.
